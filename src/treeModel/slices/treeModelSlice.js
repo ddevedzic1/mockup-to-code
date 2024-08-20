@@ -10,6 +10,8 @@ const treeModelSlice = createSlice({
 
 export default treeModelSlice.reducer;
 
+export const getTree = state => state.treeModel.tree;
+
 function createInitialState() {
   const tree = {
     id: 'rootElement',
