@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { getParentById, getElementsByIds } from '../utils/helpers';
+
 const initialState = createInitialState();
 
 const treeModelSlice = createSlice({
@@ -12,10 +14,51 @@ const treeModelSlice = createSlice({
     setHoveredElementId(state, action) {
       state.hoveredElementId = action.payload;
     },
+    moveElement(state, action) {
+      const {
+        oldParentId,
+        newParentId,
+        elementId,
+        sibling = {},
+      } = action.payload;
+
+      let ids, elements, oldParentElement;
+
+      if (!oldParentId) {
+        ids = [newParentId, elementId];
+        elements = getElementsByIds(state.tree, ids);
+        oldParentElement = getParentById(state.tree, elementId);
+      } else {
+        ids = [oldParentId, newParentId, elementId];
+        elements = getElementsByIds(state.tree, ids);
+        oldParentElement = elements[oldParentId];
+      }
+
+      const newParentElement = elements[newParentId];
+      const element = elements[elementId];
+
+      if ([oldParentElement, newParentElement, element].some(e => !e)) return;
+
+      oldParentElement.children = oldParentElement.children.filter(
+        child => child?.id !== elementId
+      );
+
+      const newParentChildren = newParentElement.children;
+      let index = newParentChildren.length;
+      if (sibling.id)
+        index = newParentChildren.findIndex(child => child?.id === sibling.id);
+      if (sibling?.edge === 'right') index++;
+      const newChildren = [
+        ...newParentChildren.slice(0, index),
+        element,
+        ...newParentChildren.slice(index),
+      ];
+      newParentElement.children = newChildren;
+    },
   },
 });
 
-export const { setActiveElementId, setHoveredElementId } =
+export const { setActiveElementId, setHoveredElementId, moveElement } =
   treeModelSlice.actions;
 
 export default treeModelSlice.reducer;
