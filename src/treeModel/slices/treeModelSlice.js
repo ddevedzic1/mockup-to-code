@@ -9,15 +9,20 @@ const treeModelSlice = createSlice({
     setActiveElementId(state, action) {
       state.activeElementId = action.payload;
     },
+    setHoveredElementId(state, action) {
+      state.hoveredElementId = action.payload;
+    },
   },
 });
 
-export const { setActiveElementId } = treeModelSlice.actions;
+export const { setActiveElementId, setHoveredElementId } =
+  treeModelSlice.actions;
 
 export default treeModelSlice.reducer;
 
 export const getTree = state => state.treeModel.tree;
 export const getActiveElementId = state => state.treeModel.activeElementId;
+export const getHoveredElementId = state => state.treeModel.hoveredElementId;
 
 function createInitialState() {
   const tree = {
@@ -71,5 +76,6 @@ function createInitialState() {
   return {
     tree,
     activeElementId: 'rootElement',
+    hoveredElementId: null,
   };
 }

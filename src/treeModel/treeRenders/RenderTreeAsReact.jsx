@@ -2,7 +2,7 @@ import { createElement } from "react"
 import PropTypes from 'prop-types';
 import { useDispatch } from "react-redux";
 
-import { setActiveElementId } from "../slices/treeModelSlice";
+import { setActiveElementId, setHoveredElementId } from "../slices/treeModelSlice";
 
 
 function RenderTreeAsReact({ tree, WrapperComponent }) {
@@ -16,6 +16,18 @@ function RenderTreeAsReact({ tree, WrapperComponent }) {
         dispatch(setActiveElementId(id));
     }
 
+    const handleMouseEnter = () => {
+        dispatch(setHoveredElementId(id));
+    }
+
+    const handleMouseLeave = (e) => {
+        if (e.relatedTarget?.id) {
+            dispatch(setHoveredElementId(e.relatedTarget.id))
+            return;
+        }
+        dispatch(setHoveredElementId(null));
+    }
+
     const renderChild = (child, i) => <RenderTreeAsReact key={i} tree={child} WrapperComponent={WrapperComponent} />
 
     const childrenElements = children ? children.map(renderChild) : [];
@@ -25,6 +37,8 @@ function RenderTreeAsReact({ tree, WrapperComponent }) {
             id={id}
             tree={tree}
             onClick={handleClick}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
         >
             {createElement(tag, { id, ...attributes }, ...childrenElements)}
         </WrapperComponent>

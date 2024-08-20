@@ -2,12 +2,16 @@ import PropTypes from 'prop-types';
 import { useSelector } from "react-redux"
 import { useState, useEffect, useRef } from "react"
 
-import { getActiveElementId } from '../../../treeModel/slices/treeModelSlice';
+import { getActiveElementId, getHoveredElementId } from '../../../treeModel/slices/treeModelSlice';
 
-function EnhancedElement({ id, tree, onClick, children }) {
+function EnhancedElement({ id, tree, onClick, onMouseEnter, onMouseLeave, children }) {
 
     const activeElementId = useSelector(getActiveElementId);
     const isActive = id === activeElementId;
+
+    const hoveredElementId = useSelector(getHoveredElementId);
+    const isHovered = id === hoveredElementId;
+
     const ref = useRef();
     let childElement = ref.current?.firstChild;
 
@@ -41,9 +45,9 @@ function EnhancedElement({ id, tree, onClick, children }) {
             left: marginLeft,
             right: marginRight,
             bottom: marginBottom,
-            outline: isActive ? '3px solid #0388fc' : "",
+            outline: isActive || isHovered ? '3px solid #0388fc' : "",
         });
-    }, [isActive, tree])
+    }, [isActive, isHovered, tree])
 
     const handleClick = (e) => {
         e.stopPropagation();
@@ -51,7 +55,8 @@ function EnhancedElement({ id, tree, onClick, children }) {
     }
 
     return (
-        <div ref={ref} style={wrapperStyle} onClick={handleClick}>
+        <div ref={ref} style={wrapperStyle} onClick={handleClick} onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave} >
             {children}
             <div style={boxStyle} />
         </div>
@@ -62,6 +67,8 @@ EnhancedElement.propTypes = {
     id: PropTypes.string.isRequired,
     tree: PropTypes.object,
     onClick: PropTypes.func,
+    onMouseEnter: PropTypes.func,
+    onMouseLeave: PropTypes.func,
     children: PropTypes.node
 }
 
