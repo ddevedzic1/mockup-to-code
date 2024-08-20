@@ -10,21 +10,23 @@ function RenderTreeAsReact({ tree, WrapperComponent }) {
 
     if (typeof tree === "string") return tree;
 
-    const { tag, children, attributes = {} } = tree;
+    const { id, tag, children, attributes = {} } = tree;
 
     const handleClick = () => {
-        dispatch(setActiveElementId(tree.id));
+        dispatch(setActiveElementId(id));
     }
 
-    const childrenElements = children ? children.map((child, i) => { return <RenderTreeAsReact key={i} tree={child} WrapperComponent={WrapperComponent} /> }) : [];
+    const renderChild = (child, i) => <RenderTreeAsReact key={i} tree={child} WrapperComponent={WrapperComponent} />
+
+    const childrenElements = children ? children.map(renderChild) : [];
 
     return (
         <WrapperComponent
-            id={tree.id}
+            id={id}
             tree={tree}
             onClick={handleClick}
         >
-            {createElement(tag, { id: tree.id, ...attributes }, ...childrenElements)}
+            {createElement(tag, { id, ...attributes }, ...childrenElements)}
         </WrapperComponent>
     );
 }
