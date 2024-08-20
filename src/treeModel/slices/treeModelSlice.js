@@ -31,6 +31,19 @@ const treeModelSlice = createSlice({
     setHoveredElementId(state, action) {
       state.hoveredElementId = action.payload;
     },
+    deleteElement(state, action) {
+      const elementId = action.payload ?? state.activeElementId;
+      if (elementId === 'rootElement') return;
+      const parentElement = getParentById(state.tree, elementId);
+      if (!parentElement || !parentElement?.children) return;
+      addDataToHistory(state);
+      const parentNewChildren = parentElement.children.filter(
+        child => child?.id !== elementId
+      );
+      parentElement.children = parentNewChildren;
+      if (state.activeElementId === elementId)
+        state.activeElementId = 'rootElement';
+    },
     moveElement(state, action) {
       const {
         oldParentId,
@@ -81,6 +94,7 @@ export const {
   undoRedo,
   setActiveElementId,
   setHoveredElementId,
+  deleteElement,
   moveElement,
 } = treeModelSlice.actions;
 
