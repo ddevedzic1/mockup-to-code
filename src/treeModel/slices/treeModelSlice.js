@@ -5,12 +5,19 @@ const initialState = createInitialState();
 const treeModelSlice = createSlice({
   name: 'treeModel',
   initialState,
-  reducers: {},
+  reducers: {
+    setActiveElementId(state, action) {
+      state.activeElementId = action.payload;
+    },
+  },
 });
+
+export const { setActiveElementId } = treeModelSlice.actions;
 
 export default treeModelSlice.reducer;
 
 export const getTree = state => state.treeModel.tree;
+export const getActiveElementId = state => state.treeModel.activeElementId;
 
 function createInitialState() {
   const tree = {
@@ -63,5 +70,6 @@ function createInitialState() {
 
   return {
     tree,
+    activeElementId: 'rootElement',
   };
 }
