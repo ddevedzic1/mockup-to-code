@@ -52,14 +52,16 @@ const treeModelSlice = createSlice({
         sibling = {},
       } = action.payload;
 
-      let ids, elements, oldParentElement;
+      if (elementId === 'rootElement') return;
+
+      let elements, oldParentElement;
 
       if (!oldParentId) {
-        ids = [newParentId, elementId];
+        const ids = [newParentId, elementId];
         elements = getElementsByIds(state.tree, ids);
         oldParentElement = getParentById(state.tree, elementId);
       } else {
-        ids = [oldParentId, newParentId, elementId];
+        const ids = [oldParentId, newParentId, elementId];
         elements = getElementsByIds(state.tree, ids);
         oldParentElement = elements[oldParentId];
       }
