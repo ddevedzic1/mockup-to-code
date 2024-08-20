@@ -3,6 +3,8 @@ import { useSelector } from "react-redux"
 import { useState, useEffect, useRef } from "react"
 
 import { getActiveElementId, getHoveredElementId } from '../../../treeModel/slices/treeModelSlice';
+import useDraggable from '../../../hooks/useDraggable';
+import useDroppable from '../../../hooks/useDroppable';
 
 function EnhancedElement({ id, tree, onClick, onMouseEnter, onMouseLeave, children }) {
 
@@ -13,7 +15,10 @@ function EnhancedElement({ id, tree, onClick, onMouseEnter, onMouseLeave, childr
     const isHovered = id === hoveredElementId;
 
     const ref = useRef();
-    let childElement = ref.current?.firstChild;
+
+    const [dnd, setDnd] = useState({ type: 'idle' });
+    useDraggable({ id, ref, type: "element", setState: setDnd })
+    useDroppable({ id, ref, type: "element", setState: setDnd });
 
     const [boxStyle, setBoxStyle] = useState({});
 
@@ -27,16 +32,26 @@ function EnhancedElement({ id, tree, onClick, onMouseEnter, onMouseLeave, childr
     };
 
     useEffect(() => {
-        childElement = ref.current?.firstChild;
-    }, [])
-
-    useEffect(() => {
+        const childElement = ref.current?.firstChild;
         if (!childElement) return;
         const computedStyle = window?.getComputedStyle(childElement);
 
         if (!computedStyle) return;
 
         const { marginTop, marginLeft, marginRight, marginBottom } = computedStyle;
+
+        const borders = {
+            "top": "borderTop",
+            "bottom": "borderBottom",
+            "left": "borderLeft",
+            "right": "borderRight",
+        }
+
+        const dndStyle = { borderLeft: "0", borderRight: "0", borderTop: "0", borderBottom: "0" };
+
+        if (dnd.closestEdge) {
+            dndStyle[borders[dnd.closestEdge]] = "3px solid #34eb5e";
+        }
 
         setBoxStyle({
             position: 'absolute',
@@ -46,8 +61,9 @@ function EnhancedElement({ id, tree, onClick, onMouseEnter, onMouseLeave, childr
             right: marginRight,
             bottom: marginBottom,
             outline: isActive || isHovered ? '3px solid #0388fc' : "",
+            ...dndStyle
         });
-    }, [isActive, isHovered, tree])
+    }, [isActive, isHovered, dnd, tree])
 
     const handleClick = (e) => {
         e.stopPropagation();
