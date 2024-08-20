@@ -1,3 +1,7 @@
+import _ from 'lodash';
+
+import { HISTORY_LIMIT } from './constants';
+
 export const getElementById = (tree, id) => {
   if (tree?.id === id) return tree;
   const children = tree?.children ?? [];
@@ -31,4 +35,24 @@ export const getElementsByIds = (tree, ids) => {
     const newElements = getElementsByIds(child, ids);
     return { ...acc, ...newElements };
   }, elements);
+};
+
+export const addDataToHistory = (
+  state,
+  type = 'past',
+  isUndoRedoAction = false
+) => {
+  state[type].push({
+    tree: _.cloneDeep(state.tree),
+    activeElementId: state.activeElementId,
+  });
+  if (!isUndoRedoAction) state.future = [];
+  if (state[type].length > HISTORY_LIMIT) state[type].shift();
+};
+
+export const getDataFromHistory = (state, type = 'past') => {
+  const data = state[type].pop();
+  state.tree = data.tree;
+  state.activeElementId = data.activeElementId;
+  state.hoveredElementId = null;
 };

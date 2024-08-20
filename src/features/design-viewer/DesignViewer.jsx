@@ -1,9 +1,13 @@
+import Toolbar from "./components/Toolbar"
 import DesignCanvas from "./components/DesignCanvas"
 
 function DesignViewer() {
     return (
-        <div style={{ position: "relative" }}>
-            <DesignCanvas />
+        <div>
+            <Toolbar />
+            <div style={{ position: "relative" }}>
+                <DesignCanvas />
+            </div>
         </div>
     )
 }

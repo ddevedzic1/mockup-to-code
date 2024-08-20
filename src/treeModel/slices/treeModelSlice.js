@@ -1,6 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { getParentById, getElementsByIds } from '../utils/helpers';
+import {
+  getParentById,
+  getElementsByIds,
+  addDataToHistory,
+  getDataFromHistory,
+} from '../utils/helpers';
 
 const initialState = createInitialState();
 
@@ -8,6 +13,18 @@ const treeModelSlice = createSlice({
   name: 'treeModel',
   initialState,
   reducers: {
+    undoRedo(state, action) {
+      const type = action.payload;
+      const options = {
+        undo: { getDataFrom: 'past', addDataTo: 'future' },
+        redo: { getDataFrom: 'future', addDataTo: 'past' },
+      };
+      const { getDataFrom, addDataTo } = options[type];
+      if (state[getDataFrom].length > 0) {
+        addDataToHistory(state, addDataTo, true);
+        getDataFromHistory(state, getDataFrom);
+      }
+    },
     setActiveElementId(state, action) {
       state.activeElementId = action.payload;
     },
@@ -39,6 +56,8 @@ const treeModelSlice = createSlice({
 
       if ([oldParentElement, newParentElement, element].some(e => !e)) return;
 
+      addDataToHistory(state);
+
       oldParentElement.children = oldParentElement.children.filter(
         child => child?.id !== elementId
       );
@@ -58,14 +77,20 @@ const treeModelSlice = createSlice({
   },
 });
 
-export const { setActiveElementId, setHoveredElementId, moveElement } =
-  treeModelSlice.actions;
+export const {
+  undoRedo,
+  setActiveElementId,
+  setHoveredElementId,
+  moveElement,
+} = treeModelSlice.actions;
 
 export default treeModelSlice.reducer;
 
 export const getTree = state => state.treeModel.tree;
 export const getActiveElementId = state => state.treeModel.activeElementId;
 export const getHoveredElementId = state => state.treeModel.hoveredElementId;
+export const hasPast = state => state.treeModel.past.length === 0;
+export const hasFuture = state => state.treeModel.future.length === 0;
 
 function createInitialState() {
   const tree = {
@@ -120,5 +145,7 @@ function createInitialState() {
     tree,
     activeElementId: 'rootElement',
     hoveredElementId: null,
+    past: [],
+    future: [],
   };
 }
