@@ -14,7 +14,7 @@ function EnhancedElement({ id, tree, onClick, onMouseEnter, onMouseLeave, childr
     const hoveredElementId = useSelector(getHoveredElementId);
     const isHovered = id === hoveredElementId;
 
-    const ref = useRef();
+    const ref = useRef(null);
 
     const [dnd, setDnd] = useState({ type: 'idle' });
     useDraggable({ id, ref, type: "element", setState: setDnd })
