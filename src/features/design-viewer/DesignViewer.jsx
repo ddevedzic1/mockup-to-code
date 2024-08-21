@@ -1,14 +1,16 @@
+import { Box } from "@chakra-ui/react"
+
 import Toolbar from "./components/Toolbar"
 import DesignCanvas from "./components/DesignCanvas"
 
 function DesignViewer() {
     return (
-        <div>
+        <Box flex="1" marginLeft="256px">
             <Toolbar />
             <div style={{ position: "relative" }}>
                 <DesignCanvas />
             </div>
-        </div>
+        </Box>
     )
 }
 

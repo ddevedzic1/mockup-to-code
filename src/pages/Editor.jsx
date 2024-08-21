@@ -1,9 +1,13 @@
+import { Flex } from "@chakra-ui/react";
+
+import Sidebar from "../features/sidebar/Sidebar"
 import DesignViewer from "../features/design-viewer/DesignViewer";
 
 function Editor() {
-    return <div>
+    return <Flex>
+        <Sidebar />
         <DesignViewer />
-    </div>
+    </Flex >
 }
 
 export default Editor;
