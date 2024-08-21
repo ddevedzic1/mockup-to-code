@@ -68,6 +68,16 @@ const treeModelSlice = createSlice({
       if (state.activeElementId === elementId)
         state.activeElementId = 'rootElement';
     },
+    changeElementAttribute(state, action) {
+      const { elementId, attributeKey, attributeValue } = action.payload;
+      const element = getElementById(state.tree, elementId);
+      if (!element) return;
+      addDataToHistory(state);
+      element['attributes'] = {
+        ...element['attributes'],
+        [attributeKey]: attributeValue,
+      };
+    },
     moveElement(state, action) {
       const {
         oldParentId,
@@ -122,6 +132,7 @@ export const {
   setHoveredElementId,
   addElement,
   deleteElement,
+  changeElementAttribute,
   moveElement,
 } = treeModelSlice.actions;
 
