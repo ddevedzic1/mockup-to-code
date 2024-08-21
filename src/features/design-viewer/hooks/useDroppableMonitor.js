@@ -2,8 +2,12 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { monitorForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 import { extractClosestEdge } from '@atlaskit/pragmatic-drag-and-drop-hitbox/closest-edge';
+import { nanoid } from 'nanoid';
 
-import { moveElement } from '../../../treeModel/slices/treeModelSlice';
+import {
+  moveElement,
+  addElement,
+} from '../../../treeModel/slices/treeModelSlice';
 
 function useDroppableMonitor() {
   const dispatch = useDispatch();
@@ -18,11 +22,12 @@ function useDroppableMonitor() {
         }
 
         const elementId = source.data?.id;
+        const newElementDefaultData = source.data?.newElementDefaultData;
         if (!elementId) return;
 
         const [, initial] = location.initial.dropTargets;
         const oldParentId = initial?.data?.id;
-        if (!oldParentId) return;
+        if (!oldParentId && !newElementDefaultData) return;
 
         const [dropFirst, dropSecond] = location.current.dropTargets;
 
@@ -58,7 +63,18 @@ function useDroppableMonitor() {
           newParentId = dropFirst.data.id;
         }
 
-        dispatch(moveElement({ oldParentId, newParentId, elementId, sibling }));
+        if (newElementDefaultData) {
+          const id = nanoid();
+          const element = {
+            id,
+            ...newElementDefaultData,
+          };
+          dispatch(addElement({ parentId: newParentId, element, sibling }));
+        } else {
+          dispatch(
+            moveElement({ oldParentId, newParentId, elementId, sibling })
+          );
+        }
       },
     });
   }, [dispatch]);
