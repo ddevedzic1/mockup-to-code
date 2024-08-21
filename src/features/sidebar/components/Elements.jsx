@@ -6,7 +6,7 @@ import { ELEMENTS } from "../utils/constants"
 function Elements() {
     const getAllIndexes = (length) => Array.from({ length }, (_, i) => i);
 
-    return <Accordion width="256px" defaultIndex={getAllIndexes(ELEMENTS.length)} allowMultiple>
+    return <Accordion defaultIndex={getAllIndexes(ELEMENTS.length)} allowMultiple>
         {ELEMENTS.map(category => <AccordionItem key={category.value} borderBottomWidth="1" borderColor="gray.700">
             <AccordionButton fontSize="sm">
                 <Box as='span' flex='1' textAlign='left' fontSize="sm">{category.title}</Box>
