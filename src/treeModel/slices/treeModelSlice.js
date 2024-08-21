@@ -143,6 +143,11 @@ export const getActiveElementId = state => state.treeModel.activeElementId;
 export const getHoveredElementId = state => state.treeModel.hoveredElementId;
 export const hasPast = state => state.treeModel.past.length === 0;
 export const hasFuture = state => state.treeModel.future.length === 0;
+export const getAttribute = (key, id) => state => {
+  if (!id) id = state.treeModel.activeElementId;
+  const element = getElementById(state.treeModel.tree, id);
+  return element?.attributes?.[key] ?? null;
+};
 
 function createInitialState() {
   const tree = {
@@ -151,8 +156,22 @@ function createInitialState() {
     attributes: {
       style: {
         width: '460px',
-        height: '600px',
-        overflow: 'auto',
+        height: '900px',
+        marginTop: '0',
+        marginBottom: '0',
+        marginLeft: '0',
+        marginRight: '0',
+        paddingTop: '0',
+        paddingBottom: '0',
+        paddingLeft: '0',
+        paddingRight: '0',
+        fontFamily: 'Times New Roman, serif',
+        fontSize: '16px',
+        lineHeight: '1.2',
+        backgroundColor: '#FFFFFF',
+        overflowY: 'auto',
+        overflowX: 'hidden',
+        boxSizing: 'border-box',
       },
     },
     children: [
