@@ -5,7 +5,7 @@ import UndoRedo from "./UndoRedo"
 
 function Toolbar() {
     return (
-        <HStack borderBottom="1px" borderColor="gray.700" gap="4" >
+        <HStack borderBottom="1px" borderColor="gray.700" gap="4" px="4" >
             <DeleteElement />
             <UndoRedo />
         </HStack>
