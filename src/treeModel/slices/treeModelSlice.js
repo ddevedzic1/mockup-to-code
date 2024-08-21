@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import {
+  getElementById,
   getParentById,
   getElementsByIds,
   addDataToHistory,
@@ -30,6 +31,29 @@ const treeModelSlice = createSlice({
     },
     setHoveredElementId(state, action) {
       state.hoveredElementId = action.payload;
+    },
+    addElement(state, action) {
+      addDataToHistory(state);
+      const {
+        parentId = 'rootElement',
+        element,
+        sibling = {},
+      } = action.payload;
+      const parentElement = getElementById(state.tree, parentId);
+      const parentChildren = parentElement?.children ?? [];
+      let index = parentChildren.length;
+      if (sibling.id)
+        index = parentChildren.findIndex(child => child?.id === sibling.id);
+      if (sibling?.edge === 'right') index++;
+      const newChildren = [
+        ...parentChildren.slice(0, index),
+        element,
+        ...parentChildren.slice(index),
+      ];
+      parentElement.children = newChildren;
+      if (element?.id) {
+        state.activeElementId = element.id;
+      }
     },
     deleteElement(state, action) {
       const elementId = action.payload ?? state.activeElementId;
@@ -96,6 +120,7 @@ export const {
   undoRedo,
   setActiveElementId,
   setHoveredElementId,
+  addElement,
   deleteElement,
   moveElement,
 } = treeModelSlice.actions;
