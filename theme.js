@@ -38,12 +38,10 @@ const components = {
   Button: {
     baseStyle: {
       _hover: {
-        outlineWidth: '1px',
-        outlineColor: 'gray.700',
+        bgColor: 'gray.800',
       },
       _focus: {
-        outlineWidth: '1px',
-        outlineColor: 'gray.700',
+        bgColor: 'gray.800',
       },
     },
     variants: {
