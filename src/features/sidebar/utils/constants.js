@@ -49,7 +49,6 @@ export const ELEMENTS = [
           internalTag: 'vstack',
           tag: 'div',
           attributes: {
-            type: 'submit',
             style: {
               display: 'flex',
               flexDirection: 'column',
@@ -136,7 +135,6 @@ export const ELEMENTS = [
             hreg: '',
             target: '_self',
             style: {
-              display: 'inline',
               color: '#0000EE',
               textDecoder: 'underline',
               cursor: 'pointer',
@@ -184,7 +182,6 @@ export const ELEMENTS = [
           attributes: {
             type: 'submit',
             style: {
-              display: 'inline-block',
               marginTop: '0',
               marginBottom: '0',
               marginLeft: '0',
@@ -215,7 +212,6 @@ export const ELEMENTS = [
           tag: 'label',
           attributes: {
             style: {
-              display: 'inline',
               cursor: 'default',
             },
           },
@@ -233,7 +229,6 @@ export const ELEMENTS = [
             placeholder: 'type...',
             type: 'text',
             style: {
-              display: 'inline-block',
               marginTop: '0',
               marginBottom: '0',
               marginLeft: '0',
@@ -265,7 +260,6 @@ export const ELEMENTS = [
             rows: '2',
             cols: '2',
             style: {
-              display: 'inline-block',
               paddingTop: '2px',
               paddingBottom: '2px',
               paddingLeft: '2px',
@@ -293,7 +287,6 @@ export const ELEMENTS = [
             type: 'checkbox',
             checked: true,
             style: {
-              display: 'inline-block',
               marginTop: '3px',
               marginBottom: '3px',
               marginLeft: '3px',
@@ -322,7 +315,6 @@ export const ELEMENTS = [
             type: 'radio',
             checked: true,
             style: {
-              display: 'inline-block',
               marginTop: '3px',
               marginBottom: '3px',
               marginLeft: '3px',
