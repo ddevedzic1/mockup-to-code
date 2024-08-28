@@ -2,13 +2,15 @@ import PropTypes from 'prop-types';
 import { useSelector } from "react-redux"
 import { useState, useEffect, useRef } from "react"
 
-import { getActiveElementId, getHoveredElementId } from '../../../treeModel/slices/treeModelSlice';
+import { getActiveElement, getHoveredElementId } from '../../../treeModel/slices/treeModelSlice';
 import useDraggable from '../../../hooks/useDraggable';
 import useDroppable from '../../../hooks/useDroppable';
 
 function EnhancedElement({ id, tree, onClick, onMouseEnter, onMouseLeave, children }) {
+    const activeElement = useSelector(getActiveElement);
+    const { id: activeElementId, attributes: activeAttributes = {} } = activeElement;
+    const { style: activeStyle = {} } = activeAttributes;
 
-    const activeElementId = useSelector(getActiveElementId);
     const isActive = id === activeElementId;
 
     const hoveredElementId = useSelector(getHoveredElementId);
@@ -25,10 +27,10 @@ function EnhancedElement({ id, tree, onClick, onMouseEnter, onMouseLeave, childr
     const wrapperStyle = {
         margin: "0",
         padding: "0",
-        width: "max-content",
-        height: "max-content",
+        width: isActive && activeStyle?.width === "100%" ? "100%" : "max-content",
+        height: isActive && activeStyle?.height === "100%" ? "100%" : "max-content",
         position: "relative",
-        display: 'inline-block',
+        display: "block",
     };
 
     useEffect(() => {
@@ -69,7 +71,6 @@ function EnhancedElement({ id, tree, onClick, onMouseEnter, onMouseLeave, childr
         e.stopPropagation();
         onClick?.();
     }
-
     return (
         <div ref={ref} style={wrapperStyle} onClick={handleClick} onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave} >
