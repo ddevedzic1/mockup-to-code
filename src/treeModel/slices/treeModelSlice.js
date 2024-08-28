@@ -147,11 +147,6 @@ export const getActiveElementId = state => state.treeModel.activeElementId;
 export const getHoveredElementId = state => state.treeModel.hoveredElementId;
 export const hasPast = state => state.treeModel.past.length === 0;
 export const hasFuture = state => state.treeModel.future.length === 0;
-export const getAttribute = (key, id) => state => {
-  if (!id) id = state.treeModel.activeElementId;
-  const element = getElementById(state.treeModel.tree, id);
-  return element?.attributes?.[key] ?? null;
-};
 export const getActiveElement = state => {
   return getElementById(state.treeModel.tree, state.treeModel.activeElementId);
 };
