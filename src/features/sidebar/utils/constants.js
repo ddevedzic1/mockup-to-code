@@ -4,22 +4,25 @@ import { IoIosLink, IoMdRadioButtonOn } from 'react-icons/io';
 import { BsBlockquoteLeft, BsTextareaResize } from 'react-icons/bs';
 import { MdOutlineLabel } from 'react-icons/md';
 import { AiOutlineForm } from 'react-icons/ai';
-import { FiSquare, FiCheckSquare } from 'react-icons/fi';
+import { FiCheckSquare } from 'react-icons/fi';
+import { LuStretchVertical, LuStretchHorizontal } from 'react-icons/lu';
 
 export const ELEMENTS = [
   {
-    value: 'basic',
-    title: 'Basic',
+    value: 'layout',
+    title: 'Layout',
     elements: [
       {
-        value: 'div',
-        title: 'Div',
-        icon: FiSquare,
+        value: 'hstack',
+        title: 'HStack',
+        icon: LuStretchVertical,
         defaultData: {
+          internalTag: 'hstack',
           tag: 'div',
           attributes: {
             style: {
-              display: 'block',
+              display: 'flex',
+              flexDirection: 'row',
               marginTop: '0',
               marginBottom: '0',
               marginLeft: '0',
@@ -39,10 +42,144 @@ export const ELEMENTS = [
         },
       },
       {
+        value: 'vstack',
+        title: 'VStack',
+        icon: LuStretchHorizontal,
+        defaultData: {
+          internalTag: 'vstack',
+          tag: 'div',
+          attributes: {
+            type: 'submit',
+            style: {
+              display: 'flex',
+              flexDirection: 'column',
+              marginTop: '0',
+              marginBottom: '0',
+              marginLeft: '0',
+              marginRight: '0',
+              paddingTop: '0',
+              paddingBottom: '0',
+              paddingLeft: '0',
+              paddingRight: '0',
+              borderColor: '#111111',
+              borderWidth: '2px',
+              borderStyle: 'solid',
+              width: '100px',
+              height: '100px',
+            },
+          },
+          children: [],
+        },
+      },
+    ],
+  },
+  {
+    value: 'typography',
+    title: 'Typography',
+    elements: [
+      {
+        value: 'heading',
+        title: 'Heading',
+        icon: BiHeading,
+        defaultData: {
+          internalTag: 'heading',
+          tag: 'h1',
+          attributes: {
+            style: {
+              display: 'block',
+              marginTop: '0.67em',
+              marginBottom: '0.67em',
+              marginLeft: '0',
+              marginRight: '0',
+              paddingTop: '0',
+              paddingBottom: '0',
+              paddingLeft: '0',
+              paddingRight: '0',
+              fontSize: '2em',
+              fontWeight: 'bold',
+            },
+          },
+          children: ['Heading'],
+        },
+      },
+      {
+        value: 'paragraph',
+        title: 'Paragraph',
+        icon: BiText,
+        defaultData: {
+          internalTag: 'paragraph',
+          tag: 'h1',
+          attributes: {
+            style: {
+              display: 'block',
+              marginTop: '1em',
+              marginBottom: '1em',
+              marginLeft: '0',
+              marginRight: '0',
+              paddingTop: '0',
+              paddingBottom: '0',
+              paddingLeft: '0',
+              paddingRight: '0',
+            },
+          },
+          children: ['Paragraph'],
+        },
+      },
+      {
+        value: 'textLink',
+        title: 'Text Link',
+        icon: IoIosLink,
+        defaultData: {
+          internalTag: 'textLink',
+          tag: 'a',
+          attributes: {
+            hreg: '',
+            target: '_self',
+            style: {
+              display: 'inline',
+              color: '#0000EE',
+              textDecoder: 'underline',
+              cursor: 'pointer',
+            },
+          },
+          children: ['link'],
+        },
+      },
+      {
+        value: 'blockQuote',
+        title: 'Block Quote',
+        icon: BsBlockquoteLeft,
+        defaultData: {
+          internalTag: 'blockQuote',
+          tag: 'blockquote',
+          attributes: {
+            style: {
+              display: 'block',
+              marginTop: '1em',
+              marginBottom: '1em',
+              marginLeft: '40px',
+              marginRight: '40px',
+              paddingTop: '0',
+              paddingBottom: '0',
+              paddingLeft: '0',
+              paddingRight: '0',
+            },
+          },
+          children: ['Block Quote'],
+        },
+      },
+    ],
+  },
+  {
+    value: 'form',
+    title: 'Form',
+    elements: [
+      {
         value: 'button',
         title: 'Button',
         icon: RxButton,
         defaultData: {
+          internalTag: 'button',
           tag: 'button',
           attributes: {
             type: 'submit',
@@ -69,112 +206,13 @@ export const ELEMENTS = [
           children: ['Click'],
         },
       },
-    ],
-  },
-  {
-    value: 'typography',
-    title: 'Typography',
-    elements: [
-      {
-        value: 'heading',
-        title: 'Heading',
-        icon: BiHeading,
-        defaultData: {
-          tag: 'h1',
-          attributes: {
-            style: {
-              display: 'block',
-              marginTop: '0.67em',
-              marginBottom: '0.67em',
-              marginLeft: '0',
-              marginRight: '0',
-              paddingTop: '0',
-              paddingBottom: '0',
-              paddingLeft: '0',
-              paddingRight: '0',
-              fontSize: '2em',
-              fontWeight: 'bold',
-            },
-          },
-          children: ['Heading'],
-        },
-      },
-      {
-        value: 'paragraph',
-        title: 'Paragraph',
-        icon: BiText,
-        defaultData: {
-          tag: 'h1',
-          attributes: {
-            style: {
-              display: 'block',
-              marginTop: '1em',
-              marginBottom: '1em',
-              marginLeft: '0',
-              marginRight: '0',
-              paddingTop: '0',
-              paddingBottom: '0',
-              paddingLeft: '0',
-              paddingRight: '0',
-              fontSize: '2em',
-            },
-          },
-          children: ['Paragraph'],
-        },
-      },
-      {
-        value: 'textLink',
-        title: 'Text Link',
-        icon: IoIosLink,
-        defaultData: {
-          tag: 'a',
-          attributes: {
-            hreg: '',
-            target: '_self',
-            style: {
-              display: 'inline',
-              color: '#0000EE',
-              textDecoder: 'underline',
-              cursor: 'pointer',
-            },
-          },
-          children: ['link'],
-        },
-      },
-      {
-        value: 'blockQuote',
-        title: 'Block Quote',
-        icon: BsBlockquoteLeft,
-        defaultData: {
-          tag: 'blockquote',
-          attributes: {
-            style: {
-              display: 'block',
-              marginTop: '1em',
-              marginBottom: '1em',
-              marginLeft: '40px',
-              marginRight: '40px',
-              paddingTop: '0',
-              paddingBottom: '0',
-              paddingLeft: '0',
-              paddingRight: '0',
-            },
-          },
-          children: ['Block Quote'],
-        },
-      },
-    ],
-  },
-  {
-    value: 'form',
-    title: 'Form',
-    elements: [
       {
         value: 'label',
         title: 'Label',
         icon: MdOutlineLabel,
         defaultData: {
-          tag: 'blockquote',
+          internalTag: 'label',
+          tag: 'label',
           attributes: {
             style: {
               display: 'inline',
@@ -189,6 +227,7 @@ export const ELEMENTS = [
         title: 'Input',
         icon: AiOutlineForm,
         defaultData: {
+          internalTag: 'input',
           tag: 'input',
           attributes: {
             placeholder: 'type...',
@@ -215,10 +254,11 @@ export const ELEMENTS = [
         },
       },
       {
-        value: 'textArea',
+        value: 'textarea',
         title: 'Text Area',
         icon: BsTextareaResize,
         defaultData: {
+          internalTag: 'textarea',
           tag: 'textarea',
           attributes: {
             placeholder: 'type...',
@@ -247,6 +287,7 @@ export const ELEMENTS = [
         title: 'Checkbox',
         icon: FiCheckSquare,
         defaultData: {
+          internalTag: 'checkbox',
           tag: 'input',
           attributes: {
             type: 'checkbox',
@@ -275,6 +316,7 @@ export const ELEMENTS = [
         title: 'Radio Button',
         icon: IoMdRadioButtonOn,
         defaultData: {
+          internalTag: 'radioButton',
           tag: 'input',
           attributes: {
             type: 'radio',
