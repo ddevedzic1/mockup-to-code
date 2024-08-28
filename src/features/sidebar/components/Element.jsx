@@ -3,8 +3,11 @@ import PropTypes from 'prop-types';
 import { useRef, useEffect } from "react"
 import { draggable } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 
-function Element({ title, elementIcon, defaultData }) {
+import { ELEMENTS_DEFAULT_DATA } from "../../../utils/constants"
+
+function Element({ value, title, elementIcon }) {
     const ref = useRef(null);
+    const defaultData = ELEMENTS_DEFAULT_DATA[value];
     useEffect(() => {
         const element = ref?.current;
         if (!element) return;
@@ -25,9 +28,9 @@ function Element({ title, elementIcon, defaultData }) {
 }
 
 Element.propTypes = {
+    value: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     elementIcon: PropTypes.object.isRequired,
-    defaultData: PropTypes.object.isRequired,
 }
 
 export default Element

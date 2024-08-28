@@ -14,7 +14,7 @@ function Elements() {
             </AccordionButton>
             <AccordionPanel>
                 <SimpleGrid columns="3">
-                    {category.elements.map(element => <Element key={element.value} title={element.title} elementIcon={{ icon: element.icon }} defaultData={element.defaultData} />)}
+                    {category.elements.map(element => <Element key={element.value} value={element.value} title={element.title} elementIcon={{ icon: element.icon }} />)}
                 </SimpleGrid>
             </AccordionPanel>
         </AccordionItem>)}
