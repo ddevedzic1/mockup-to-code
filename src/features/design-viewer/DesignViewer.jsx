@@ -5,7 +5,7 @@ import DesignCanvas from "./components/DesignCanvas"
 
 function DesignViewer() {
     return (
-        <Box flex="1" marginLeft="256px">
+        <Box flex="1" marginLeft="256px" marginRight="256px">
             <Toolbar />
             <div style={{ position: "relative" }}>
                 <DesignCanvas />
