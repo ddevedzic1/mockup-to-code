@@ -2,15 +2,16 @@ import PropTypes from 'prop-types';
 import { useSelector } from "react-redux"
 import { useState, useEffect, useRef } from "react"
 
-import { getActiveElement, getHoveredElementId } from '../../../treeModel/slices/treeModelSlice';
+import { findElementById, getActiveElementId, getHoveredElementId } from '../../../treeModel/slices/treeModelSlice';
 import useDraggable from '../../../hooks/useDraggable';
 import useDroppable from '../../../hooks/useDroppable';
 
 function EnhancedElement({ id, tree, onClick, onMouseEnter, onMouseLeave, children }) {
-    const activeElement = useSelector(getActiveElement);
-    const { id: activeElementId, attributes: activeAttributes = {} } = activeElement;
-    const { style: activeStyle = {} } = activeAttributes;
+    const element = useSelector(findElementById(id));
+    const { attributes: elementAttributes = {} } = element;
+    const { style: elementStyle = {} } = elementAttributes;
 
+    const activeElementId = useSelector(getActiveElementId);
     const isActive = id === activeElementId;
 
     const hoveredElementId = useSelector(getHoveredElementId);
@@ -27,8 +28,8 @@ function EnhancedElement({ id, tree, onClick, onMouseEnter, onMouseLeave, childr
     const wrapperStyle = {
         margin: "0",
         padding: "0",
-        width: isActive && activeStyle?.width === "100%" ? "100%" : "max-content",
-        height: isActive && activeStyle?.height === "100%" ? "100%" : "max-content",
+        width: elementStyle?.width === "100%" ? "100%" : "max-content",
+        height: elementStyle?.height === "100%" ? "100%" : "max-content",
         position: "relative",
         display: "block",
     };
