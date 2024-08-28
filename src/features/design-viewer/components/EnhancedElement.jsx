@@ -67,8 +67,8 @@ function EnhancedElement({ id, tree, onClick, onMouseEnter, onMouseLeave, childr
             left: marginLeft,
             right: marginRight,
             bottom: marginBottom,
-            outline: isActive || isHovered ? '3px solid #0388fc' : "",
             ...dndStyle,
+            border: isActive || isHovered ? '3px solid #0388fc' : "",
         });
     }, [isActive, isHovered, dnd, tree])
 
