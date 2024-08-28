@@ -30,6 +30,10 @@ function EnhancedElement({ id, tree, onClick, onMouseEnter, onMouseLeave, childr
         padding: "0",
         width: elementStyle?.width === "100%" ? "100%" : "max-content",
         height: elementStyle?.height === "100%" ? "100%" : "max-content",
+        maxWidth: elementStyle?.maxWidth ?? "",
+        minWidth: elementStyle?.minWidth ?? "",
+        maxHeight: elementStyle?.maxHeight ?? "",
+        minHeight: elementStyle?.minHeight ?? "",
         position: "relative",
         display: "block",
     };
@@ -64,7 +68,7 @@ function EnhancedElement({ id, tree, onClick, onMouseEnter, onMouseLeave, childr
             right: marginRight,
             bottom: marginBottom,
             outline: isActive || isHovered ? '3px solid #0388fc' : "",
-            ...dndStyle
+            ...dndStyle,
         });
     }, [isActive, isHovered, dnd, tree])
 
