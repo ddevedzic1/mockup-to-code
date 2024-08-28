@@ -82,6 +82,13 @@ const treeModelSlice = createSlice({
         [attributeKey]: attributeValue,
       };
     },
+    changeElementContent(state, action) {
+      const { elementId = state.activeElementId, content } = action.payload;
+      const element = getElementById(state.tree, elementId);
+      if (!element) return;
+      addDataToHistory(state);
+      element.children = [content];
+    },
     moveElement(state, action) {
       const {
         oldParentId,
@@ -137,6 +144,7 @@ export const {
   addElement,
   deleteElement,
   changeElementAttribute,
+  changeElementContent,
   moveElement,
 } = treeModelSlice.actions;
 
@@ -163,7 +171,7 @@ function createInitialState() {
       style: {
         display: 'flex',
         flexDirection: 'column',
-        width: '100%',
+        width: '460px',
         height: '600px',
         marginTop: '0',
         marginBottom: '0',
