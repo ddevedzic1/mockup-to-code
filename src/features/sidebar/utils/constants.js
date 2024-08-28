@@ -5,7 +5,11 @@ import { BsBlockquoteLeft, BsTextareaResize } from 'react-icons/bs';
 import { MdOutlineLabel } from 'react-icons/md';
 import { AiOutlineForm } from 'react-icons/ai';
 import { FiCheckSquare } from 'react-icons/fi';
-import { LuStretchVertical, LuStretchHorizontal } from 'react-icons/lu';
+import {
+  LuStretchVertical,
+  LuStretchHorizontal,
+  LuLayoutGrid,
+} from 'react-icons/lu';
 
 export const ELEMENTS = [
   {
@@ -52,6 +56,37 @@ export const ELEMENTS = [
             style: {
               display: 'flex',
               flexDirection: 'column',
+              marginTop: '0',
+              marginBottom: '0',
+              marginLeft: '0',
+              marginRight: '0',
+              paddingTop: '0',
+              paddingBottom: '0',
+              paddingLeft: '0',
+              paddingRight: '0',
+              borderColor: '#111111',
+              borderWidth: '2px',
+              borderStyle: 'solid',
+              width: '100px',
+              height: '100px',
+            },
+          },
+          children: [],
+        },
+      },
+      {
+        value: 'grid',
+        title: 'Grid',
+        icon: LuLayoutGrid,
+        defaultData: {
+          internalTag: 'grid',
+          tag: 'grid',
+          attributes: {
+            style: {
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+              gridRowGap: '10px',
+              gridColumnGap: '10px',
               marginTop: '0',
               marginBottom: '0',
               marginLeft: '0',
