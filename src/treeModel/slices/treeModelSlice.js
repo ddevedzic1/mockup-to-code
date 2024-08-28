@@ -69,7 +69,11 @@ const treeModelSlice = createSlice({
         state.activeElementId = 'rootElement';
     },
     changeElementAttribute(state, action) {
-      const { elementId, attributeKey, attributeValue } = action.payload;
+      const {
+        elementId = state.activeElementId,
+        attributeKey,
+        attributeValue,
+      } = action.payload;
       const element = getElementById(state.tree, elementId);
       if (!element) return;
       addDataToHistory(state);
