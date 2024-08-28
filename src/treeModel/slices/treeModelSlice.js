@@ -155,12 +155,10 @@ export const getActiveElementId = state => state.treeModel.activeElementId;
 export const getHoveredElementId = state => state.treeModel.hoveredElementId;
 export const hasPast = state => state.treeModel.past.length === 0;
 export const hasFuture = state => state.treeModel.future.length === 0;
-export const getActiveElement = state => {
-  return getElementById(state.treeModel.tree, state.treeModel.activeElementId);
-};
-export const findElementById = id => state => {
-  return getElementById(state.treeModel.tree, id);
-};
+export const getActiveElement = state =>
+  getElementById(state.treeModel.tree, state.treeModel.activeElementId);
+export const findElementById = id => state =>
+  getElementById(state.treeModel.tree, id);
 
 function createInitialState() {
   const tree = {
