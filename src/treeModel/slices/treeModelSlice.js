@@ -157,11 +157,14 @@ export const findElementById = id => state => {
 function createInitialState() {
   const tree = {
     id: 'rootElement',
+    internalTag: 'rootElement',
     tag: 'div',
     attributes: {
       style: {
-        width: '460px',
-        height: '900px',
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100%',
+        height: '600px',
         marginTop: '0',
         marginBottom: '0',
         marginLeft: '0',
@@ -179,42 +182,7 @@ function createInitialState() {
         boxSizing: 'border-box',
       },
     },
-    children: [
-      {
-        id: 'firstChild',
-        tag: 'div',
-        attributes: {
-          style: {
-            width: '100px',
-            height: '100px',
-          },
-        },
-        children: [
-          {
-            id: '1',
-            tag: 'input',
-            attributes: {
-              style: {
-                backgroundColor: 'gray',
-              },
-            },
-            children: [],
-          },
-          {
-            id: '2',
-            tag: 'button',
-            attributes: {
-              style: {
-                backgroundColor: 'gray',
-                marginLeft: '20px',
-                marginTop: '20px',
-              },
-            },
-            children: ['Click 2'],
-          },
-        ],
-      },
-    ],
+    children: [],
   };
 
   return {
