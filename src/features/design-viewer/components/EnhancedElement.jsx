@@ -74,7 +74,9 @@ function EnhancedElement({ id, tree, onClick, onMouseEnter, onMouseLeave, childr
     return (
         <div ref={ref} style={wrapperStyle} onClick={handleClick} onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave} >
-            {children}
+            <div>
+                {children}
+            </div>
             <div style={boxStyle} />
         </div>
     )
