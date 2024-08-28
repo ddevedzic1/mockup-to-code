@@ -1,4 +1,4 @@
-import { Box, FormLabel, Select, Flex } from "@chakra-ui/react";
+import { Box, FormLabel, Select, Checkbox, Flex } from "@chakra-ui/react";
 import PropTypes from 'prop-types';
 
 import ControlledInput from "./ControlledInput";
@@ -45,6 +45,18 @@ function LabeledInput({
                     defaultValue={value}
                     onBlur={onBlur}
                     {...props}
+                />
+            );
+            break;
+        case 'checkbox':
+            inputComponent = (
+                <Checkbox
+                    id={id}
+                    defaultValue={value}
+                    onBlur={onBlur}
+                    {...props}
+                    verticalAlign="unset"
+                    size="sm"
                 />
             );
             break;
