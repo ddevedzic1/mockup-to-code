@@ -152,6 +152,9 @@ export const getAttribute = (key, id) => state => {
   const element = getElementById(state.treeModel.tree, id);
   return element?.attributes?.[key] ?? null;
 };
+export const getActiveElement = state => {
+  return getElementById(state.treeModel.tree, state.treeModel.activeElementId);
+};
 
 function createInitialState() {
   const tree = {
