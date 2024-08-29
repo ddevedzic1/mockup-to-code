@@ -54,10 +54,14 @@ function EnhancedElement({ id, tree, onClick, onMouseEnter, onMouseLeave, childr
             "right": "borderRight",
         }
 
-        const dndStyle = { borderLeft: "0", borderRight: "0", borderTop: "0", borderBottom: "0" };
+        const borderStyle = { borderLeft: "0", borderRight: "0", borderTop: "0", borderBottom: "0" };
+
+        if (isActive || isHovered) {
+            Object.values(borders).forEach(border => borderStyle[border] = '3px solid #0388fc')
+        }
 
         if (dnd.closestEdge) {
-            dndStyle[borders[dnd.closestEdge]] = "3px solid #34eb5e";
+            borderStyle[borders[dnd.closestEdge]] = "3px solid #34eb5e";
         }
 
         setBoxStyle({
@@ -67,8 +71,7 @@ function EnhancedElement({ id, tree, onClick, onMouseEnter, onMouseLeave, childr
             left: marginLeft,
             right: marginRight,
             bottom: marginBottom,
-            ...dndStyle,
-            border: isActive || isHovered ? '3px solid #0388fc' : "",
+            ...borderStyle,
         });
     }, [isActive, isHovered, dnd, tree])
 
