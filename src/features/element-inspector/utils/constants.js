@@ -50,6 +50,101 @@ const ALIGN_ITEMS_OPTIONS = [
   { value: 'center', title: 'Center' },
 ];
 
+export const ATTRIBUTES_OPTIONS = {
+  value: 'attributes',
+  title: 'Attributes',
+  notAllowedElements: ['rootElement', 'hstack', 'vstack', 'grid'],
+  options: [
+    {
+      value: 'content',
+      pureTag: 'content',
+      reactTag: 'content',
+      label: 'Content',
+      notAllowedElements: ['input', 'textarea', 'checkbox', 'radioButton'],
+      inputType: 'textarea',
+    },
+    {
+      pureTag: 'href',
+      reactTag: 'href',
+      label: 'Href',
+      notAllowedElements: [
+        'heading',
+        'paragraph',
+        'blockQuote',
+        'button',
+        'label',
+        'input',
+        'textarea',
+        'checkbox',
+        'radioButton',
+      ],
+      inputType: 'text',
+    },
+    {
+      pureTag: 'onclick',
+      reactTag: 'onClick',
+      label: 'onClick',
+      notAllowedElements: [
+        'heading',
+        'paragraph',
+        'textLink',
+        'blockQuote',
+        'label',
+        'input',
+        'textarea',
+        'checkbox',
+        'radioButton',
+      ],
+      inputType: 'text',
+    },
+    {
+      pureTag: 'disabled',
+      reactTag: 'disabled',
+      label: 'Disabled',
+      notAllowedElements: [
+        'heading',
+        'paragraph',
+        'textLink',
+        'blockQuote',
+        'label',
+      ],
+      inputType: 'checkbox',
+    },
+    {
+      pureTag: 'placeholder',
+      reactTag: 'placeholder',
+      label: 'Placeholder',
+      notAllowedElements: [
+        'heading',
+        'paragraph',
+        'textLink',
+        'blockQuote',
+        'button',
+        'label',
+        'checkbox',
+        'radioButton',
+      ],
+      inputType: 'text',
+    },
+    {
+      pureTag: 'checked',
+      reactTag: 'checked',
+      label: 'Checked',
+      notAllowedElements: [
+        'heading',
+        'paragraph',
+        'textLink',
+        'blockQuote',
+        'button',
+        'label',
+        'input',
+        'textarea',
+      ],
+      inputType: 'checkbox',
+    },
+  ],
+};
+
 export const STYLE_OPTIONS = [
   {
     value: 'textStyle',

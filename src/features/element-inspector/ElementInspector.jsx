@@ -1,6 +1,7 @@
 import { Box } from "@chakra-ui/react"
 
 import StyleInspector from "./components/StyleInspector"
+import OtherSettings from "./components/OtherSettings"
 
 function ElementInspector() {
     return (
@@ -34,6 +35,7 @@ function ElementInspector() {
                 scrollbarColor: "gray.700 transparent",
             }}
         >
+            <OtherSettings />
             <StyleInspector />
         </Box>
     )
