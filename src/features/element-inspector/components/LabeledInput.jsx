@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import ControlledInput from "./ControlledInput";
 import ColorInput from "./ColorInput";
+import ControlledTextarea from "./ControlledTextarea";
 
 function LabeledInput({
     label,
@@ -52,11 +53,26 @@ function LabeledInput({
             inputComponent = (
                 <Checkbox
                     id={id}
-                    defaultValue={value}
-                    onBlur={onBlur}
+                    isChecked={value}
+                    onChange={onBlur}
                     {...props}
                     verticalAlign="unset"
                     size="sm"
+                />
+            );
+            break;
+        case 'textarea':
+            inputComponent = (
+                <ControlledTextarea
+                    id={id}
+                    defaultValue={value}
+                    onBlur={onBlur}
+                    {...props}
+                    fontSize="xs"
+                    color="textColor.light"
+                    p="1"
+                    minH="unset"
+                    borderColor="gray.700"
                 />
             );
             break;
