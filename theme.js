@@ -37,6 +37,7 @@ const styles = {
 const components = {
   Button: {
     baseStyle: {
+      fontWeight: 'normal',
       _hover: {
         bgColor: 'gray.800',
       },
