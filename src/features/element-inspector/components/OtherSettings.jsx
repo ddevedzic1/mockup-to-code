@@ -1,15 +1,14 @@
 import { Box } from "@chakra-ui/react"
-import { useSelector, useDispatch } from "react-redux"
+import { useDispatch } from "react-redux"
+import PropTypes from 'prop-types';
 
 import LabeledInput from "./LabeledInput"
 import { ATTRIBUTES_OPTIONS } from "../utils/constants"
-import { getActiveElement } from "../../../treeModel/slices/treeModelSlice"
 import { changeElementContent, changeElementAttribute } from "../../../treeModel/slices/treeModelSlice"
 import { isNotAllowedCategory } from "../utils/helpers"
 
-function OtherSettings() {
+function OtherSettings({ activeElement }) {
     const dispatch = useDispatch();
-    const activeElement = useSelector(getActiveElement);
     const { internalTag, attributes, children } = activeElement;
 
     const getValue = (key) => {
@@ -44,6 +43,10 @@ function OtherSettings() {
                     : null) : null
         }
     </Box>
+}
+
+OtherSettings.propTypes = {
+    activeElement: PropTypes.object.isRequired,
 }
 
 export default OtherSettings

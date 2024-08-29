@@ -101,6 +101,26 @@ const components = {
       variant: 'outline',
     },
   },
+  Tabs: {
+    baseStyle: {
+      tablist: {
+        borderBottomWidth: '1px',
+        borderColor: 'gray.700',
+      },
+      tab: {
+        fontWeight: 'semibold',
+        color: 'textColor.medium',
+        _selected: { color: 'textColor.light', borderBottom: '2px' },
+      },
+      tabpanel: {
+        m: '0',
+        p: '0',
+      },
+    },
+    defaultProps: {
+      size: 'sm',
+    },
+  },
 };
 
 const theme = extendTheme({

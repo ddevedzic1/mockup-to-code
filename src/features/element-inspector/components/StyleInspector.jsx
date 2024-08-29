@@ -1,16 +1,15 @@
 import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box } from "@chakra-ui/react"
-import { useSelector, useDispatch } from "react-redux"
+import { useDispatch } from "react-redux"
+import PropTypes from 'prop-types';
 
 import LabeledInput from "./LabeledInput"
 import { STYLE_OPTIONS } from "../utils/constants"
-import { getActiveElement } from "../../../treeModel/slices/treeModelSlice"
 import { changeElementAttribute } from "../../../treeModel/slices/treeModelSlice"
 import { isNotAllowedCategory } from "../utils/helpers"
 
-function StyleInspector() {
+function StyleInspector({ activeElement }) {
     const dispatch = useDispatch();
     const attributeKey = "style";
-    const activeElement = useSelector(getActiveElement);
     const { internalTag, attributes } = activeElement;
     const { style } = attributes;
 
@@ -60,6 +59,10 @@ function StyleInspector() {
             </AccordionItem> : null
         )}
     </Accordion>
+}
+
+StyleInspector.propTypes = {
+    activeElement: PropTypes.object.isRequired,
 }
 
 export default StyleInspector
