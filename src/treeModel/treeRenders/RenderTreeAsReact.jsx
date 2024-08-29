@@ -11,6 +11,10 @@ function RenderTreeAsReact({ tree, WrapperComponent }) {
     if (typeof tree === "string") return tree;
 
     const { id, tag, children, attributes = {} } = tree;
+    const attributesWithoutDisabled = {
+        ...attributes,
+    }
+    if (attributes?.["disabled"]) delete attributesWithoutDisabled["disabled"];
 
     const handleClick = () => {
         dispatch(setActiveElementId(id));
@@ -40,7 +44,7 @@ function RenderTreeAsReact({ tree, WrapperComponent }) {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
-            {createElement(tag, { id, ...attributes }, ...childrenElements)}
+            {createElement(tag, { id, ...attributesWithoutDisabled }, ...childrenElements)}
         </WrapperComponent>
     );
 }
