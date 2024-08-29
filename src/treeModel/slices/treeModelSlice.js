@@ -164,6 +164,7 @@ function createInitialState() {
   const tree = {
     id: 'rootElement',
     internalTag: 'rootElement',
+    internalTitle: 'Root',
     tag: 'div',
     attributes: {
       style: {

@@ -1,5 +1,5 @@
 import { Box, Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react"
-import { FiPlus } from "react-icons/fi";
+import { FiPlus, FiLayers } from "react-icons/fi";
 
 import Elements from "./components/Elements"
 import Layers from "./components/Layers"
@@ -23,6 +23,7 @@ function Sidebar() {
             >
                 <TabList>
                     <Tab p="2"><FiPlus size="18px" title="Add Elements" /></Tab>
+                    <Tab p="2"><FiLayers size="18px" title="Layers" /></Tab>
                 </TabList>
                 <TabPanels height="100%" overflowY="auto"
                     sx={{
@@ -45,6 +46,9 @@ function Sidebar() {
                     }}>
                     <TabPanel>
                         <Elements />
+                    </TabPanel>
+                    <TabPanel>
+                        <Layers />
                     </TabPanel>
                 </TabPanels>
             </Tabs>

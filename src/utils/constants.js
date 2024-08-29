@@ -1,6 +1,7 @@
 export const ELEMENTS_DEFAULT_DATA = {
   hstack: {
     internalTag: 'hstack',
+    internalTitle: 'HStack',
     tag: 'div',
     attributes: {
       style: {
@@ -25,6 +26,7 @@ export const ELEMENTS_DEFAULT_DATA = {
   },
   vstack: {
     internalTag: 'vstack',
+    internalVStack: 'VStack',
     tag: 'div',
     attributes: {
       style: {
@@ -49,6 +51,7 @@ export const ELEMENTS_DEFAULT_DATA = {
   },
   grid: {
     internalTag: 'grid',
+    internalGrid: 'Grid',
     tag: 'div',
     attributes: {
       style: {
@@ -75,6 +78,7 @@ export const ELEMENTS_DEFAULT_DATA = {
   },
   heading: {
     internalTag: 'heading',
+    internalTitle: 'Heading',
     tag: 'h1',
     attributes: {
       style: {
@@ -95,6 +99,7 @@ export const ELEMENTS_DEFAULT_DATA = {
   },
   paragraph: {
     internalTag: 'paragraph',
+    internalTitle: 'Paragraph',
     tag: 'h1',
     attributes: {
       style: {
@@ -113,6 +118,7 @@ export const ELEMENTS_DEFAULT_DATA = {
   },
   textLink: {
     internalTag: 'textLink',
+    internalTitle: 'Text Link',
     tag: 'a',
     attributes: {
       hreg: '',
@@ -127,6 +133,7 @@ export const ELEMENTS_DEFAULT_DATA = {
   },
   blockQuote: {
     internalTag: 'blockQuote',
+    internalTitle: 'Block Quote',
     tag: 'blockquote',
     attributes: {
       style: {
@@ -145,6 +152,7 @@ export const ELEMENTS_DEFAULT_DATA = {
   },
   button: {
     internalTag: 'button',
+    internalTitle: 'Button',
     tag: 'button',
     attributes: {
       type: 'submit',
@@ -171,6 +179,7 @@ export const ELEMENTS_DEFAULT_DATA = {
   },
   label: {
     internalTag: 'label',
+    internalTitle: 'Label',
     tag: 'label',
     attributes: {
       style: {
@@ -181,6 +190,7 @@ export const ELEMENTS_DEFAULT_DATA = {
   },
   input: {
     internalTag: 'input',
+    internalTitle: 'Input',
     tag: 'input',
     attributes: {
       placeholder: 'type...',
@@ -206,6 +216,7 @@ export const ELEMENTS_DEFAULT_DATA = {
   },
   textarea: {
     internalTag: 'textarea',
+    internalTitle: 'Textarea',
     tag: 'textarea',
     attributes: {
       placeholder: 'type...',
@@ -229,6 +240,7 @@ export const ELEMENTS_DEFAULT_DATA = {
   },
   checkbox: {
     internalTag: 'checkbox',
+    internalTitle: 'Checkbox',
     tag: 'input',
     attributes: {
       type: 'checkbox',
@@ -252,6 +264,7 @@ export const ELEMENTS_DEFAULT_DATA = {
   },
   radioButton: {
     internalTag: 'radioButton',
+    internalTitle: 'Radio Button',
     tag: 'input',
     attributes: {
       type: 'radio',
