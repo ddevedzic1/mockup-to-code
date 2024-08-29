@@ -26,6 +26,7 @@ function LayersStructure({ tree, activeElementId, hoveredElementId, handleClick,
             hoveredElementId={hoveredElementId}
             handleClick={handleClick}
             handleMouseEnter={handleMouseEnter}
+            handleMouseLeave={handleMouseLeave}
         />
     }
     let childrenElements = children ? children.map(renderChild) : [];
