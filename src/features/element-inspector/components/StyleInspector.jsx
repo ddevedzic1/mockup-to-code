@@ -5,6 +5,7 @@ import LabeledInput from "./LabeledInput"
 import { STYLE_OPTIONS } from "../utils/constants"
 import { getActiveElement } from "../../../treeModel/slices/treeModelSlice"
 import { changeElementAttribute } from "../../../treeModel/slices/treeModelSlice"
+import { isNotAllowedCategory } from "../utils/helpers"
 
 function StyleInspector() {
     const dispatch = useDispatch();
@@ -34,10 +35,8 @@ function StyleInspector() {
         return options;
     }
 
-    const isAllowedCategory = (category) => category?.notAllowedElements?.includes(internalTag)
-
     return <Accordion defaultIndex={[0]} allowMultiple>
-        {STYLE_OPTIONS.map(category => !isAllowedCategory(category) ?
+        {STYLE_OPTIONS.map(category => !isNotAllowedCategory(category, internalTag) ?
             <AccordionItem key={category.value} borderBottomWidth="1" borderColor="gray.700">
                 <AccordionButton fontSize="sm">
                     <Box as='span' flex='1' textAlign='left' fontSize="sm">{category.title}</Box>
@@ -45,7 +44,7 @@ function StyleInspector() {
                 </AccordionButton>
                 <AccordionPanel>
                     {
-                        category.options.map(option => !isAllowedCategory(option) ?
+                        category.options.map(option => !isNotAllowedCategory(option, internalTag) ?
                             <LabeledInput
                                 key={option.reactTag}
                                 label={option.label}
