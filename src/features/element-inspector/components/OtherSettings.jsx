@@ -33,11 +33,11 @@ function OtherSettings({ activeElement }) {
             !isNotAllowedCategory(ATTRIBUTES_OPTIONS, internalTag) ?
                 ATTRIBUTES_OPTIONS.options.map(option => !isNotAllowedCategory(option, internalTag) ?
                     <LabeledInput
-                        key={option.reactTag}
+                        key={option.pureTag}
                         label={option.label}
                         type={option.inputType}
-                        id={option.reactTag}
-                        value={getValue(option.reactTag)}
+                        id={option.pureTag}
+                        value={getValue(option.pureTag)}
                         onBlur={handleBlur}
                     />
                     : null) : null
