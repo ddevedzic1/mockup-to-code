@@ -3,10 +3,10 @@ import { useSelector } from "react-redux"
 import { useState } from 'react';
 
 import CodeBlock from "../../../components/CodeBlock"
+import { getTree } from "../../../treeModel/slices/treeModelSlice"
 import { generateHtml } from "../../../treeModel/codeGenerators/generateHtml"
 import { generateCss } from "../../../treeModel/codeGenerators/generateCss"
 import { generateJavaScript } from "../../../treeModel/codeGenerators/generateJavaScript"
-import { getTree } from "../../../treeModel/slices/treeModelSlice"
 
 function CodeViewer() {
     const tree = useSelector(getTree);

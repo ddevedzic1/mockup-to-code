@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react'
 import { BiCodeAlt } from "react-icons/bi";
 
+import CodeDownloader from './CodeDownloader';
 import CodeViewer from './CodeViewer';
 
 function CodePreview() {
@@ -41,6 +42,7 @@ function CodePreview() {
                         scrollbarWidth: "thin",
                         scrollbarColor: "gray.700 transparent",
                     }}>
+                        <CodeDownloader />
                         <CodeViewer />
                     </ModalBody>
                 </ModalContent>

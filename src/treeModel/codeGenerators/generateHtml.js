@@ -4,10 +4,10 @@ export const generateHtml = tree => {
   <html>
   <head>
   <title>Page title</title>
-  <link href="./index.css" rel="stylesheet" />
+  <link href="./styles.css" rel="stylesheet" />
   </head>
   <body>${htmlBody}
-  <script defer src="./index.js" />
+  <script defer src="./script.js" />
   </body>
   </html>`;
 };
