@@ -71,6 +71,7 @@ function useDroppableMonitor() {
           };
           dispatch(addElement({ parentId: newParentId, element, sibling }));
         } else {
+          if (newParentId === elementId) return;
           dispatch(
             moveElement({ oldParentId, newParentId, elementId, sibling })
           );
