@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { setActiveElementId, setHoveredElementId } from "../slices/treeModelSlice";
 
 
-function RenderTreeAsReact({ tree, WrapperComponent }) {
+function TreeAsReact({ tree, WrapperComponent }) {
     const dispatch = useDispatch();
 
     if (typeof tree === "string") return tree;
@@ -32,7 +32,7 @@ function RenderTreeAsReact({ tree, WrapperComponent }) {
         dispatch(setHoveredElementId(null));
     }
 
-    const renderChild = (child, i) => <RenderTreeAsReact key={i} tree={child} WrapperComponent={WrapperComponent} />
+    const renderChild = (child, i) => <TreeAsReact key={i} tree={child} WrapperComponent={WrapperComponent} />
 
     const childrenElements = children ? children.map(renderChild) : [];
 
@@ -49,9 +49,9 @@ function RenderTreeAsReact({ tree, WrapperComponent }) {
     );
 }
 
-RenderTreeAsReact.propTypes = {
+TreeAsReact.propTypes = {
     tree: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
     WrapperComponent: PropTypes.elementType.isRequired
 }
 
-export default RenderTreeAsReact;
+export default TreeAsReact;
