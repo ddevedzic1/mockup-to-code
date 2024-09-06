@@ -51,7 +51,7 @@ export const ELEMENTS_DEFAULT_DATA = {
   },
   grid: {
     internalTag: 'grid',
-    internalGrid: 'Grid',
+    internalTitle: 'Grid',
     tag: 'div',
     attributes: {
       style: {
@@ -172,7 +172,7 @@ export const ELEMENTS_DEFAULT_DATA = {
         textAlign: 'center',
         fontFamily: 'sans-serif',
         backgroundColor: '#707070',
-        cursor: 'default',
+        cursor: 'pointer',
       },
     },
     children: ['Click'],
@@ -255,7 +255,6 @@ export const ELEMENTS_DEFAULT_DATA = {
         paddingLeft: '0',
         paddingRight: '0',
         borderStyle: 'none',
-        backgroundColor: '#707070',
         width: '13px',
         height: '13px',
       },
@@ -279,7 +278,6 @@ export const ELEMENTS_DEFAULT_DATA = {
         paddingLeft: '0',
         paddingRight: '0',
         borderStyle: 'none',
-        backgroundColor: '#707070',
         width: '13px',
         height: '13px',
       },
