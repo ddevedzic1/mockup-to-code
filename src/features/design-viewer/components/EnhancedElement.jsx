@@ -77,11 +77,20 @@ function EnhancedElement({ id, tree, onClick, onMouseEnter, onMouseLeave, childr
 
     const handleClick = (e) => {
         e.stopPropagation();
-        onClick?.();
+        onClick?.(id);
     }
+
+    const handleMouseEnter = () => onMouseEnter(id)
+
+
     return (
-        <div ref={ref} style={wrapperStyle} onClick={handleClick} onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave} >
+        <div
+            ref={ref}
+            style={wrapperStyle}
+            onClick={handleClick}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={onMouseLeave}
+        >
             {children}
             <div style={boxStyle} />
         </div>

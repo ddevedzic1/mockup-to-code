@@ -1,29 +1,14 @@
-import { createElement } from "react"
 import PropTypes from 'prop-types';
 import { useDispatch } from "react-redux";
 
+import RenderTreeAsReact from "./RenderTreeAsReact"
 import { setActiveElementId, setHoveredElementId } from "../slices/treeModelSlice";
 
 
 function TreeAsReact({ tree, WrapperComponent }) {
     const dispatch = useDispatch();
-
-    if (typeof tree === "string") return tree;
-
-    const { id, tag, children, attributes = {} } = tree;
-    const attributesWithoutDisabled = {
-        ...attributes,
-    }
-    if (attributes?.["disabled"]) delete attributesWithoutDisabled["disabled"];
-
-    const handleClick = () => {
-        dispatch(setActiveElementId(id));
-    }
-
-    const handleMouseEnter = () => {
-        dispatch(setHoveredElementId(id));
-    }
-
+    const handleClick = (id) => dispatch(setActiveElementId(id));
+    const handleMouseEnter = (id) => dispatch(setHoveredElementId(id));
     const handleMouseLeave = (e) => {
         if (e.relatedTarget?.id) {
             dispatch(setHoveredElementId(e.relatedTarget.id))
@@ -32,20 +17,14 @@ function TreeAsReact({ tree, WrapperComponent }) {
         dispatch(setHoveredElementId(null));
     }
 
-    const renderChild = (child, i) => <TreeAsReact key={i} tree={child} WrapperComponent={WrapperComponent} />
-
-    const childrenElements = children ? children.map(renderChild) : [];
-
     return (
-        <WrapperComponent
-            id={id}
+        <RenderTreeAsReact
             tree={tree}
-            onClick={handleClick}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-        >
-            {createElement(tag, { id, ...attributesWithoutDisabled }, ...childrenElements)}
-        </WrapperComponent>
+            WrapperComponent={WrapperComponent}
+            handleClick={handleClick}
+            handleMouseEnter={handleMouseEnter}
+            handleMouseLeave={handleMouseLeave}
+        />
     );
 }
 
