@@ -25,7 +25,7 @@ function CodeDownloader() {
     };
 
     return (
-        <Button bgColor="gray.800" onClick={handleDownload}>Download Code</Button>
+        <Button bgColor="gray.800" size="sm" mb="4" onClick={handleDownload}>Download Code</Button>
     )
 }
 
