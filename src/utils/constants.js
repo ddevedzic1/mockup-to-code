@@ -121,7 +121,7 @@ export const ELEMENTS_DEFAULT_DATA = {
     internalTitle: 'Text Link',
     tag: 'a',
     attributes: {
-      hreg: '',
+      href: '',
       target: '_self',
       style: {
         color: '#0000EE',
