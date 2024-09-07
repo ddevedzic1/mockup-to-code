@@ -1,13 +1,11 @@
 import PropTypes from 'prop-types';
 import { createElement } from "react"
 
+import { reduceAttributes } from "../utils/helpers"
+
 function RenderTreeAsReact({ tree, WrapperComponent, handleClick, handleMouseEnter, handleMouseLeave }) {
     const { id, tag, children = [], attributes = {} } = tree;
-    const reducedAttributes = {
-        ...attributes,
-    }
-    if (attributes?.["disabled"]) delete reducedAttributes["disabled"];
-    if (attributes?.["href"]) delete reducedAttributes["href"];
+    const reducedAttributes = reduceAttributes(attributes);
 
     const renderChild = (child, i) => <RenderTreeAsReact
         key={i}
