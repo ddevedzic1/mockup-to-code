@@ -1,30 +1,30 @@
 import PropTypes from 'prop-types';
-import { createElement } from "react"
+import { createElement, useCallback } from "react"
+
 
 function RenderTreeAsReact({ tree, WrapperComponent, handleClick, handleMouseEnter, handleMouseLeave }) {
-    if (typeof tree === "string") return tree;
-
     const { id, tag, children = [], attributes = {} } = tree;
     const attributesWithoutDisabled = {
         ...attributes,
     }
     if (attributes?.["disabled"]) delete attributesWithoutDisabled["disabled"];
 
-    const renderChild = (child, i) => <RenderTreeAsReact
+    const renderChild = useCallback((child, i) => <RenderTreeAsReact
         key={i}
         tree={child}
         WrapperComponent={WrapperComponent}
         handleClick={handleClick}
         handleMouseEnter={handleMouseEnter}
         handleMouseLeave={handleMouseLeave}
-    />
+    />, [WrapperComponent, handleClick, handleMouseEnter, handleMouseLeave]);
 
     const childrenElements = children.map(renderChild);
+
+    if (typeof tree === "string") return tree;
 
     return (
         <WrapperComponent
             id={id}
-            tree={tree}
             onClick={handleClick}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}

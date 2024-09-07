@@ -1,12 +1,14 @@
-import PropTypes from 'prop-types';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import RenderTreeAsReact from "./RenderTreeAsReact"
-import { setActiveElementId, setHoveredElementId } from "../slices/treeModelSlice";
+import EnhancedElement from "./EnhancedElement";
+import { setActiveElementId, setHoveredElementId } from "../../../treeModel/slices/treeModelSlice";
+import { getTree } from "../../../treeModel/slices/treeModelSlice";
 
 
-function TreeAsReact({ tree, WrapperComponent }) {
+function TreeAsReact() {
     const dispatch = useDispatch();
+    const tree = useSelector(getTree);
     const handleClick = (id) => dispatch(setActiveElementId(id));
     const handleMouseEnter = (id) => dispatch(setHoveredElementId(id));
     const handleMouseLeave = (e) => {
@@ -20,17 +22,12 @@ function TreeAsReact({ tree, WrapperComponent }) {
     return (
         <RenderTreeAsReact
             tree={tree}
-            WrapperComponent={WrapperComponent}
+            WrapperComponent={EnhancedElement}
             handleClick={handleClick}
             handleMouseEnter={handleMouseEnter}
             handleMouseLeave={handleMouseLeave}
         />
     );
-}
-
-TreeAsReact.propTypes = {
-    tree: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
-    WrapperComponent: PropTypes.elementType.isRequired
 }
 
 export default TreeAsReact;
