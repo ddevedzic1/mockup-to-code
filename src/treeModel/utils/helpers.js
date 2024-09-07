@@ -3,8 +3,8 @@ import _ from 'lodash';
 import { HISTORY_LIMIT } from './constants';
 
 export const getElementById = (tree, id) => {
-  if (tree?.id === id) return tree;
-  const children = tree?.children ?? [];
+  const { id: treeId, children = [] } = tree;
+  if (treeId === id) return tree;
   return children.slice().reduce((acc, child, _, arr) => {
     acc = getElementById(child, id);
     if (acc) arr.splice(1);
@@ -13,9 +13,10 @@ export const getElementById = (tree, id) => {
 };
 
 export const getParentById = (tree, id) => {
-  const children = tree?.children ?? [];
+  const { children = [] } = tree;
   return children.slice().reduce((_, child, __, arr) => {
-    if (child?.id === id) {
+    const { id: childId } = child;
+    if (childId === id) {
       arr.splice(1);
       return tree;
     }
@@ -29,8 +30,8 @@ export const getParentById = (tree, id) => {
 
 export const getElementsByIds = (tree, ids) => {
   const elements = {};
-  if (ids.includes(tree?.id)) elements[tree.id] = tree;
-  const children = tree?.children ?? [];
+  const { id: treeId, children = [] } = tree;
+  if (ids.includes(treeId)) elements[treeId] = tree;
   return children.slice().reduce((acc, child) => {
     const newElements = getElementsByIds(child, ids);
     return { ...acc, ...newElements };

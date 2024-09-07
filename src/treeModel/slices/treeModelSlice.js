@@ -40,7 +40,7 @@ const treeModelSlice = createSlice({
         sibling = {},
       } = action.payload;
       const parentElement = getElementById(state.tree, parentId);
-      const parentChildren = parentElement?.children ?? [];
+      const { children: parentChildren = [] } = parentElement;
       let index = parentChildren.length;
       if (sibling.id)
         index = parentChildren.findIndex(child => child?.id === sibling.id);
