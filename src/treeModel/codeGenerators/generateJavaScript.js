@@ -4,9 +4,9 @@ export const generateJavaScript = tree => {
   let generatedJavaScript = '';
 
   const { id, children = [], attributes = {} } = tree;
-  const { onclick: onclickAttr = null } = attributes;
+  const { onClick: onClickAttr = null } = attributes;
 
-  if (onclickAttr) generatedJavaScript += generateFunction(id, onclickAttr);
+  if (onClickAttr) generatedJavaScript += generateFunction(id, onClickAttr);
 
   return children.reduce((acc, child) => {
     const newJS = generateJavaScript(child);

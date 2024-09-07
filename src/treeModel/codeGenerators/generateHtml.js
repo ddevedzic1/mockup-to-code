@@ -4,10 +4,10 @@ export const generateHtml = tree => {
   <html>
   <head>
   <title>Page title</title>
-  <link href="./styles.css" rel="stylesheet" />
+  <link href="styles.css" rel="stylesheet" />
   </head>
   <body>${htmlBody}
-  <script defer src="./script.js" />
+  <script src="script.js"></script>
   </body>
   </html>`;
 };
@@ -26,9 +26,9 @@ const generateHtmlBody = tree => {
 const generateAttributesString = (id, attributes) => {
   return Object.keys(attributes).reduce((acc, attr) => {
     if (attr === 'style') return acc;
-    let attrValue = attributes[attr];
-    if (attr === 'onclick') attrValue = `${id}()`;
-    if (attr === 'disabled' && attrValue == true) return acc + `${attr} `;
-    return acc + `${attr}="${attrValue}" `;
+    if (attr === 'onClick') return acc + `onclick="${id}()" `;
+    if (attr === 'disabled' && attributes[attr] == true)
+      return acc + 'disabled';
+    return acc + `${attr}="${attributes[attr]}" `;
   }, '');
 };
