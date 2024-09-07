@@ -26,7 +26,7 @@ export const ELEMENTS_DEFAULT_DATA = {
   },
   vstack: {
     internalTag: 'vstack',
-    internalVStack: 'VStack',
+    internalTitle: 'VStack',
     tag: 'div',
     attributes: {
       style: {
@@ -100,7 +100,7 @@ export const ELEMENTS_DEFAULT_DATA = {
   paragraph: {
     internalTag: 'paragraph',
     internalTitle: 'Paragraph',
-    tag: 'h1',
+    tag: 'p',
     attributes: {
       style: {
         display: 'block',
@@ -125,7 +125,7 @@ export const ELEMENTS_DEFAULT_DATA = {
       target: '_self',
       style: {
         color: '#0000EE',
-        textDecoder: 'underline',
+        textDecoration: 'underline',
         cursor: 'pointer',
       },
     },
