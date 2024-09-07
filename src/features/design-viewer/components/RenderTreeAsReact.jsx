@@ -3,10 +3,11 @@ import { createElement } from "react"
 
 function RenderTreeAsReact({ tree, WrapperComponent, handleClick, handleMouseEnter, handleMouseLeave }) {
     const { id, tag, children = [], attributes = {} } = tree;
-    const attributesWithoutDisabled = {
+    const reducedAttributes = {
         ...attributes,
     }
-    if (attributes?.["disabled"]) delete attributesWithoutDisabled["disabled"];
+    if (attributes?.["disabled"]) delete reducedAttributes["disabled"];
+    if (attributes?.["href"]) delete reducedAttributes["href"];
 
     const renderChild = (child, i) => <RenderTreeAsReact
         key={i}
@@ -28,7 +29,7 @@ function RenderTreeAsReact({ tree, WrapperComponent, handleClick, handleMouseEnt
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
-            {createElement(tag, { id, ...attributesWithoutDisabled }, ...childrenElements)}
+            {createElement(tag, { id, ...reducedAttributes }, ...childrenElements)}
         </WrapperComponent>
     );
 }
