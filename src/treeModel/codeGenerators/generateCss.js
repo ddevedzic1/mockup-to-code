@@ -2,7 +2,7 @@ import { camelToKebab } from '../../utils/helpers';
 
 export const generateCss = tree => {
   const generatedCss = generateCssOfAddedElements(tree);
-  return `html, body {\n    margin: 0\n}\n\n${generatedCss}`;
+  return `html, body {\n    margin: 0;\n    padding: 0;\n    overflow: hidden\n}\n\n${generatedCss}`;
 };
 
 const generateCssOfAddedElements = tree => {
