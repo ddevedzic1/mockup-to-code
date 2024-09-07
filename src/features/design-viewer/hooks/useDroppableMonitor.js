@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { monitorForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 import { extractClosestEdge } from '@atlaskit/pragmatic-drag-and-drop-hitbox/closest-edge';
-import { nanoid } from 'nanoid';
 
 import {
   moveElement,
   addElement,
 } from '../../../treeModel/slices/treeModelSlice';
+import { generateId } from '../../../utils/helpers';
 
 function useDroppableMonitor() {
   const dispatch = useDispatch();
@@ -64,7 +64,7 @@ function useDroppableMonitor() {
         }
 
         if (newElementDefaultData) {
-          let id = nanoid().replace(/-/g, '_').replace(/^\d/, '_');
+          const id = generateId();
           const element = {
             id,
             ...newElementDefaultData,
