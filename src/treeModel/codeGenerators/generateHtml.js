@@ -28,6 +28,7 @@ const generateAttributesString = (id, attributes) => {
     if (attr === 'style') return acc;
     let attrValue = attributes[attr];
     if (attr === 'onclick') attrValue = `${id}()`;
+    if (attr === 'disabled' && attrValue == true) return acc + `${attr} `;
     return acc + `${attr}="${attrValue}" `;
   }, '');
 };
