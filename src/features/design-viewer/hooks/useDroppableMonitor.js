@@ -64,7 +64,7 @@ function useDroppableMonitor() {
         }
 
         if (newElementDefaultData) {
-          let id = nanoid().replace(/-/g, '_');
+          let id = nanoid().replace(/-/g, '_').replace(/^\d/, '_');
           const element = {
             id,
             ...newElementDefaultData,
