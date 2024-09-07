@@ -6,7 +6,7 @@ import { findElementById, getActiveElementId, getHoveredElementId } from '../../
 import useDraggable from '../../../hooks/useDraggable';
 import useDroppable from '../../../hooks/useDroppable';
 
-function EnhancedElement({ id, tree, onClick, onMouseEnter, onMouseLeave, children }) {
+function EnhancedElement({ id, onClick, onMouseEnter, onMouseLeave, children }) {
     const element = useSelector(findElementById(id));
     const { attributes: elementAttributes = {} } = element;
     const { style: elementStyle = {} } = elementAttributes;
@@ -73,7 +73,7 @@ function EnhancedElement({ id, tree, onClick, onMouseEnter, onMouseLeave, childr
             bottom: marginBottom,
             ...borderStyle,
         });
-    }, [isActive, isHovered, dnd, tree])
+    }, [isActive, isHovered, dnd, elementStyle])
 
     const handleClick = (e) => {
         e.stopPropagation();
@@ -99,7 +99,6 @@ function EnhancedElement({ id, tree, onClick, onMouseEnter, onMouseLeave, childr
 
 EnhancedElement.propTypes = {
     id: PropTypes.string.isRequired,
-    tree: PropTypes.object,
     onClick: PropTypes.func,
     onMouseEnter: PropTypes.func,
     onMouseLeave: PropTypes.func,
