@@ -8,7 +8,7 @@ function LayersStructure({ tree, activeElementId, hoveredElementId, handleClick,
     const [isOpen, setIsOpen] = useState(false)
 
     if (typeof tree === "string") return;
-    const { id, internalTitle, children } = tree;
+    const { id, internalTitle, children = [] } = tree;
     const isActive = id === activeElementId;
     const isHovered = id === hoveredElementId;
 
@@ -29,7 +29,7 @@ function LayersStructure({ tree, activeElementId, hoveredElementId, handleClick,
             handleMouseLeave={handleMouseLeave}
         />
     }
-    let childrenElements = children ? children.map(renderChild) : [];
+    let childrenElements = children.map(renderChild);
     childrenElements = childrenElements.filter(element => element !== undefined);
     const hasChildren = childrenElements.length > 0;
 
