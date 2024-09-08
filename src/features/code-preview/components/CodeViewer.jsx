@@ -4,9 +4,7 @@ import { useState } from 'react';
 
 import CodeBlock from "../../../components/CodeBlock"
 import { getTree } from "../../../treeModel/slices/treeModelSlice"
-import { generateHtml } from "../codeGenerators/generateHtml"
-import { generateCss } from "../codeGenerators/generateCss"
-import { generateJavaScript } from "../codeGenerators/generateJavaScript"
+import { generateHtml, generateCss, generateJavaScript } from "../codeGenerators"
 
 function CodeViewer() {
     const tree = useSelector(getTree);
