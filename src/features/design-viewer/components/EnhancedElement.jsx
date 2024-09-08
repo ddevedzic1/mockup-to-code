@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from "react"
 import { findElementById, getActiveElementId, getHoveredElementId } from '../../../treeModel/slices/treeModelSlice';
 import useDraggable from '../../../hooks/useDraggable';
 import useDroppable from '../../../hooks/useDroppable';
+import { generateWrapperStyle } from '../../../utils/helpers';
 
 function EnhancedElement({ id, onClick, onMouseEnter, onMouseLeave, children }) {
     const element = useSelector(findElementById(id));
@@ -25,18 +26,7 @@ function EnhancedElement({ id, onClick, onMouseEnter, onMouseLeave, children }) 
 
     const [boxStyle, setBoxStyle] = useState({});
 
-    const wrapperStyle = {
-        margin: "0",
-        padding: "0",
-        width: elementStyle?.width === "100%" ? "100%" : "max-content",
-        height: elementStyle?.height === "100%" ? "100%" : "max-content",
-        maxWidth: elementStyle?.maxWidth ?? "",
-        minWidth: elementStyle?.minWidth ?? "",
-        maxHeight: elementStyle?.maxHeight ?? "",
-        minHeight: elementStyle?.minHeight ?? "",
-        position: "relative",
-        display: "block",
-    };
+    const wrapperStyle = generateWrapperStyle(elementStyle, { position: "relative" });
 
     useEffect(() => {
         const childElement = ref.current?.firstChild;
