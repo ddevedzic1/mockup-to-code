@@ -10,8 +10,8 @@ import {
 } from '@chakra-ui/react'
 import { BiCodeAlt } from "react-icons/bi";
 
-import CodeDownloader from './CodeDownloader';
-import CodeViewer from './CodeViewer';
+import CodeDownloader from './components/CodeDownloader';
+import CodeViewer from './components/CodeViewer';
 
 function CodePreview() {
     const { isOpen, onOpen, onClose } = useDisclosure()

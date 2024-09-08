@@ -1,5 +1,4 @@
-import { camelToKebab } from '../../utils/helpers';
-import { generateWrapperStyle } from '../../utils/helpers';
+import { camelToKebab, generateWrapperStyle } from '../../../utils/helpers';
 
 export const generateCss = tree => {
   const generatedCss = generateCssOfAddedElements(tree);

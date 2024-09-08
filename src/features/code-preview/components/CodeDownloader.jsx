@@ -4,9 +4,9 @@ import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 
 import { getTree } from "../../../treeModel/slices/treeModelSlice"
-import { generateHtml } from "../../../treeModel/codeGenerators/generateHtml"
-import { generateCss } from "../../../treeModel/codeGenerators/generateCss"
-import { generateJavaScript } from "../../../treeModel/codeGenerators/generateJavaScript"
+import { generateHtml } from "../codeGenerators/generateHtml"
+import { generateCss } from "../codeGenerators/generateCss"
+import { generateJavaScript } from "../codeGenerators/generateJavaScript"
 
 function CodeDownloader() {
     const tree = useSelector(getTree);

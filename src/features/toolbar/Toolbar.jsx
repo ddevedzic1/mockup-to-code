@@ -1,8 +1,8 @@
 import { HStack, Spacer } from "@chakra-ui/react"
 
-import DeleteElement from "./DeleteElement"
-import UndoRedo from "./UndoRedo"
-import CodePreview from "./CodePreview"
+import DeleteElement from "./components/DeleteElement"
+import UndoRedo from "./components/UndoRedo"
+import CodePreview from "../code-preview/CodePreview"
 
 function Toolbar() {
     return (
