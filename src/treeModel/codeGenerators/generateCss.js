@@ -1,4 +1,5 @@
 import { camelToKebab } from '../../utils/helpers';
+import { generateWrapperStyle } from '../../utils/helpers';
 
 export const generateCss = tree => {
   const generatedCss = generateCssOfAddedElements(tree);
@@ -10,9 +11,10 @@ const generateCssOfAddedElements = tree => {
   const { id, children = [], attributes = {} } = tree;
   const { style = {} } = attributes;
   if (Object.keys(style).length > 0) {
-    const properties = generateProperties(style);
-    const currentElementCss = `#${id} {\n${properties}}\n\n`;
-    generatedCss += currentElementCss;
+    const wrapperId = `${id}_wrapper`;
+    const wrapperStyle = generateWrapperStyle(style);
+    generatedCss += generateCssForOneElement(wrapperId, wrapperStyle);
+    generatedCss += generateCssForOneElement(id, style);
   }
   return children.reduce((acc, child) => {
     const newCss = generateCssOfAddedElements(child);
@@ -27,4 +29,9 @@ const generateProperties = style => {
       acc + `    ${camelToKebab(property)}: ${style[property]};\n`,
     ''
   );
+};
+
+const generateCssForOneElement = (id, style) => {
+  const properties = generateProperties(style);
+  return `#${id} {\n${properties}}\n\n`;
 };

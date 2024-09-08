@@ -20,7 +20,7 @@ const generateHtmlBody = tree => {
 
   const generatedChildren = children.map(generateHtmlBody).join('');
 
-  return `\n<div>\n<${tag} id="${id}" ${attributesString}>${generatedChildren}</${tag}>\n</div>`;
+  return `\n<div id="${id}_wrapper">\n<${tag} id="${id}" ${attributesString}>${generatedChildren}</${tag}>\n</div>`;
 };
 
 const generateAttributesString = (id, attributes) => {
