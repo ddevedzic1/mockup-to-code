@@ -16,6 +16,7 @@ function Sidebar() {
             borderColor="gray.700"
             zIndex="10"
             bgColor="gray.900"
+            pb="10"
         >
             <Tabs
                 variant="unstyled"
