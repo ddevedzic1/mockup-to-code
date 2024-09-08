@@ -289,3 +289,33 @@ export const ELEMENTS_DEFAULT_DATA = {
     children: [],
   },
 };
+
+export const ROOT_ELEMENT = {
+  id: 'rootElement',
+  internalTag: 'rootElement',
+  internalTitle: 'Root',
+  tag: 'div',
+  attributes: {
+    style: {
+      display: 'flex',
+      flexDirection: 'column',
+      width: '100%',
+      height: '100%',
+      marginTop: '0',
+      marginBottom: '0',
+      marginLeft: '0',
+      marginRight: '0',
+      paddingTop: '0',
+      paddingBottom: '0',
+      paddingLeft: '0',
+      paddingRight: '0',
+      fontFamily: 'Times New Roman, serif',
+      fontSize: '16px',
+      lineHeight: '1.2',
+      backgroundColor: '#FFFFFF',
+      overflow: 'auto',
+      boxSizing: 'border-box',
+    },
+  },
+  children: [],
+};
