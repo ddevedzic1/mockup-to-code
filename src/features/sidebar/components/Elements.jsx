@@ -2,11 +2,11 @@ import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPane
 
 import Element from "./Element";
 import { ELEMENTS } from "../utils/constants"
+import { getIndexes } from "../../../utils/helpers";
 
 function Elements() {
-    const getAllIndexes = (length) => Array.from({ length }, (_, i) => i);
-
-    return <Accordion defaultIndex={getAllIndexes(ELEMENTS.length)} allowMultiple>
+    const indexes = getIndexes(ELEMENTS.length);
+    return <Accordion defaultIndex={indexes} allowMultiple>
         {ELEMENTS.map(category => <AccordionItem key={category.value} borderBottomWidth="1" borderColor="gray.700">
             <AccordionButton fontSize="sm">
                 <Box as='span' flex='1' textAlign='left' fontSize="sm">{category.title}</Box>

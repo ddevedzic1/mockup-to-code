@@ -30,3 +30,5 @@ export const generateWrapperStyle = (elementStyle, ownStyle = {}) => {
     ...ownStyle,
   };
 };
+
+export const getIndexes = length => Array.from({ length }, (_, i) => i);
