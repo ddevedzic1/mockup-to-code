@@ -12,7 +12,7 @@ import { generateId } from '../../../utils/helpers';
 function useDroppableMonitor() {
   const dispatch = useDispatch();
   useEffect(() => {
-    const SPACE_THRESHOLD = 5;
+    const SPACE_THRESHOLD = 8;
     return monitorForElements({
       onDrop: args => {
         const { source, location } = args;
