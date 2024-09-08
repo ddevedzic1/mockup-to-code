@@ -5,6 +5,8 @@ import 'highlight.js/styles/github-dark.css';
 
 function CodeBlock({ code, language }) {
     const ref = useRef(null);
+    const className = `language-${language}`;
+    const style = { whiteSpace: 'pre-wrap', backgroundColor: "#202020" }
 
     useEffect(() => {
         if (ref && ref.current) {
@@ -16,7 +18,7 @@ function CodeBlock({ code, language }) {
 
     return (
         <pre>
-            <code ref={ref} className={`language-${language}`} style={{ whiteSpace: 'pre-wrap', backgroundColor: "#202020" }} >
+            <code ref={ref} className={className} style={style} >
                 {code}
             </code>
         </pre >
