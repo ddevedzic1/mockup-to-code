@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import Home from "../pages/Home"
 import Editor from "../pages/Editor"
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="editor/:projectId/:pageId" element={<Editor />} />
       </Routes>
     </BrowserRouter>
