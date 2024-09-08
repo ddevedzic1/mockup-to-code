@@ -9,7 +9,7 @@ function Element({ value, title, elementIcon }) {
     const ref = useRef(null);
     const defaultData = ELEMENTS_DEFAULT_DATA[value];
     useEffect(() => {
-        const element = ref?.current;
+        const { current: element } = ref;
         if (!element) return;
         return draggable({
             element: element,

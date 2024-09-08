@@ -7,8 +7,8 @@ import {
 
 function useDroppable({ id, ref, type, setState }) {
   useEffect(() => {
-    let element = ref.current;
-    if (type === 'element') element = ref.current?.firstChild;
+    let { current: element } = ref;
+    if (type === 'element') element = element?.firstChild;
     if (!element) return;
     const idle = { type: 'idle' };
     return dropTargetForElements({
